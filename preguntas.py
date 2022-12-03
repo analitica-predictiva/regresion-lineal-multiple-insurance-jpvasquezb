@@ -128,8 +128,8 @@ def pregunta_03():
         param_grid=param_grid,
         cv=5,
         scoring='neg_mean_squared_error',
-        refit=False,
-        return_train_score=False,
+        refit=True,
+        return_train_score=True,
     )
 
     # Búsque la mejor combinación de regresores
