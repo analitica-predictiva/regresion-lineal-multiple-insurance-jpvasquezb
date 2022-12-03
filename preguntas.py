@@ -10,6 +10,8 @@ selección de las n variables más relevantes usando una prueba f.
 # pylint: disable=unsubscriptable-object
 
 import pandas as pd
+import numpy as np
+
 
 
 def pregunta_01():
@@ -18,16 +20,16 @@ def pregunta_01():
     -------------------------------------------------------------------------------------
     """
     # Lea el archivo `insurance.csv` y asignelo al DataFrame `df`
-    df = pd.read_csv("insurance.csv")
+    df = pd.read_csv('insurance.csv', sep = ",", header = 0,)
 
     # Asigne la columna `charges` a la variable `y`.
-    y = df["charges"]
+    y = df['charges'].copy()
 
     # Asigne una copia del dataframe `df` a la variable `X`.
-    X = df.copy(deep=True)
+    X = df.copy()
 
     # Remueva la columna `charges` del DataFrame `X`.
-    X.drop(["charges"],axis =1)
+    X.drop(['charges'], axis=1, inplace = True)  
 
     # Retorne `X` y `y`
     return X, y
@@ -59,20 +61,6 @@ def pregunta_02():
 
 
 def pregunta_03():
-    """
-    Especificación del pipeline y entrenamiento
-    -------------------------------------------------------------------------------------
-    """
-
-    # Importe make_column_selector
-    # Importe make_column_transformer
-    # Importe SelectKBest
-    # Importe f_regression
-    # Importe LinearRegression
-    # Importe GridSearchCV
-    # Importe Pipeline
-    # Importe OneHotEncoder
-    def pregunta_03():
     """
     Especificación del pipeline y entrenamiento
     -------------------------------------------------------------------------------------
