@@ -72,15 +72,28 @@ def pregunta_03():
     # Importe GridSearchCV
     # Importe Pipeline
     # Importe OneHotEncoder
+    def pregunta_03():
+    """
+    Especificación del pipeline y entrenamiento
+    -------------------------------------------------------------------------------------
+    """
+
+    # Importe make_column_selector
+    # Importe make_column_transformer
+    # Importe SelectKBest
+    # Importe f_regression
+    # Importe LinearRegression
+    # Importe GridSearchCV
+    # Importe Pipeline
+    # Importe OneHotEncoder
     from sklearn.compose import make_column_selector
     from sklearn.compose import make_column_transformer
-    from sklearn.compose import ColumnTransformer
     from sklearn.feature_selection import SelectKBest
+    from sklearn.feature_selection import f_regression
     from sklearn.linear_model import LinearRegression
     from sklearn.model_selection import GridSearchCV
     from sklearn.pipeline import Pipeline
     from sklearn.preprocessing import OneHotEncoder
-    import numpy as np
 
     pipeline = Pipeline(
         steps=[
@@ -92,32 +105,32 @@ def pregunta_03():
                 make_column_transformer(
                     (
                         OneHotEncoder(),
-                        make_column_selector(dtype_include=object),
+                        make_column_selector(dtype_include = object),
                     ),
-                    remainder='passthrough',
+                    remainder = 'passthrough',
                 ),
             ),
             # Paso 2: Construya un selector de características que seleccione las K
             # características más importantes. Utilice la función f_regression.
             (
                 "selectKBest",
-                SelectKBest(score_func='f_regression'),
+                SelectKBest(score_func= f_regression),
             ),
             # Paso 3: Construya un modelo de regresión lineal.
             (
-                "regress",
+                "LinearRegression",
                 LinearRegression(),
             ),
         ],
     )
 
     # Cargua de las variables.
-    X_train, _, y_train, _ = pregunta_02()
+    X_train, X_test, y_train, y_test = pregunta_02()
 
     # Defina un diccionario de parámetros para el GridSearchCV. Se deben
     # considerar valores desde 1 hasta 11 regresores para el modelo
     param_grid = {
-        "selectKBest__k":np.arange(1,12,1)
+        'selectKBest__k': np.arange(1, 12, 1),
     }
 
     # Defina una instancia de GridSearchCV con el pipeline y el diccionario de
